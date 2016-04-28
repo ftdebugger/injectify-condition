@@ -1,12 +1,12 @@
 {
   "name": "injectify-condition",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Condition plugin for injectify",
+  "main": "inject.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp karma"
   },
-  "author": "",
+  "author": "Evgeny Shpilevsky <evgeny@shpilevsky.com>",
   "license": "ISC",
   "devDependencies": {
     "backbone": "^1.2.0",
@@ -25,5 +25,6 @@
   },
   "peerDependencies": {
     "injectify": "~2.3.0"
-  }
+  },
+  "repository": "git@github.com:ftdebugger/injectify-condition.git"
 }
