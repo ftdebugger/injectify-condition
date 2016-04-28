@@ -21,7 +21,8 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "mocha": "^2.4.5",
     "underscore": "^1.8.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "injectify": "~2.3.0"
   },
   "peerDependencies": {
     "injectify": "~2.3.0"
