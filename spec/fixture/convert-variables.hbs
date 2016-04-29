@@ -1,3 +1,3 @@
 {{#is-mobile}}
-    Test - {{../value}} {{#block-helper abc=../value}}- {{abc}}{{/block-helper}}
+    Test - {{../value}} {{#block-helper abc=../value}}- {{abc}}{{#block-helper}} - {{../abc}}{{/block-helper}}{{/block-helper}}
 {{/is-mobile}}

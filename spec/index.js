@@ -68,7 +68,7 @@ describe('injectify-condition', function () {
     it('convert nesting variables', function () {
         var blockTemplate = require('./fixture/convert-variables.hbs');
 
-        expect(blockTemplate({value: 123}).trim()).to.equal('Test - 123 - 123');
+        expect(blockTemplate({value: 123}).trim()).to.equal('Test - 123 - 123 - 123');
     });
 
 });

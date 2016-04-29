@@ -42,8 +42,8 @@ injectify.installPlugin(function (injectify) {
         if (node) {
             var walker = walkerFactory();
 
-            walker.registerTransform('PathExpression', function(node) {
-                if (node.depth > 0) {
+            walker.registerTransform('PathExpression', function(node, options) {
+                if (node.depth >= options.depth) {
                     node.depth--;
                 }
 
@@ -55,10 +55,6 @@ injectify.installPlugin(function (injectify) {
 
         return node;
     };
-
-    // injectify.bus.on('node', function(event) {
-    //     console.log(JSON.stringify(event.node, null, 2));
-    // })
 
     injectify.walker.registerTransform('BlockStatement', function (node) {
         var i, param;
