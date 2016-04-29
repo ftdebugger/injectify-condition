@@ -1,4 +1,5 @@
 var injectify = require('injectify');
+var walkerFactory = require('injectify/lib/walker').factory;
 
 var empty = function () {
     return {
@@ -31,10 +32,28 @@ injectify.installPlugin(function (injectify) {
 
     var modify = function (node, source, expect) {
         if (blocks[node.path.original] === expect) {
-            return source.program || empty();
+            return bubbleNodes(source.program) || empty();
         } else {
-            return source.inverse || empty();
+            return bubbleNodes(source.inverse) || empty();
         }
+    };
+
+    var bubbleNodes = function (node) {
+        if (node) {
+            var walker = walkerFactory();
+
+            walker.registerTransform('PathExpression', function(node) {
+                if (node.depth > 0) {
+                    node.depth--;
+                }
+
+                return node;
+            });
+
+            return walker.walk(node);
+        }
+
+        return node;
     };
 
     // injectify.bus.on('node', function(event) {
