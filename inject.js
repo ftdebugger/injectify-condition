@@ -43,7 +43,7 @@ injectify.installPlugin(function (injectify) {
             var walker = walkerFactory();
 
             walker.registerPreTransform('PathExpression', function (node, options) {
-                if (node.depth >= options.depth) {
+                if (node.depth >= options.depth && node.depth > 0) {
                     node.depth--;
                 }
 
