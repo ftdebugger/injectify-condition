@@ -1,6 +1,6 @@
 {
   "name": "injectify-condition",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Condition plugin for injectify",
   "main": "inject.js",
   "scripts": {
