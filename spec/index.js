@@ -71,4 +71,10 @@ describe('injectify-condition', function () {
         expect(blockTemplate({value: 123}).trim()).to.equal('Test - 123 - 123 - 123');
     });
 
+    it('correct handle several blocks in if', function () {
+        var blockTemplate = require('./fixture/several-blocks.hbs');
+
+        expect(blockTemplate({}).trim()).to.equal('line 1\n    helper 1\n    line 2\n    helper 2');
+    });
+
 });

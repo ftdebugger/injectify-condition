@@ -42,7 +42,7 @@ injectify.installPlugin(function (injectify) {
         if (node) {
             var walker = walkerFactory();
 
-            walker.registerTransform('PathExpression', function(node, options) {
+            walker.registerPreTransform('PathExpression', function (node, options) {
                 if (node.depth >= options.depth) {
                     node.depth--;
                 }
@@ -50,13 +50,13 @@ injectify.installPlugin(function (injectify) {
                 return node;
             });
 
-            return walker.walk(node);
+            node = walker.walk(node);
         }
 
         return node;
     };
 
-    injectify.walker.registerTransform('BlockStatement', function (node) {
+    injectify.walker.registerPreTransform('BlockStatement', function (node) {
         var i, param;
 
         if (accept(node)) {
@@ -86,17 +86,17 @@ injectify.installPlugin(function (injectify) {
         return node;
     });
 
-    // injectify.walker.registerTransform('HashPair', function (node) {
-    //     if (node.value.type === 'SubExpression' && accept(node.value)) {
-    //         node.value = booleanNode(blocks[node.value.path.original]);
-    //     }
-    //
-    //     return node;
-    // });
-    //
-    injectify.walker.registerTransform('SubExpression', function (node) {
+    injectify.walker.registerPreTransform('SubExpression', function (node) {
         if (accept(node)) {
             return booleanNode(blocks[node.path.original]);
+        }
+
+        return node;
+    });
+
+    injectify.walker.registerPostTransform('Program', function (node) {
+        if (node.body.length === 1 && node.body[0].type === 'Program') {
+            return node.body[0];
         }
 
         return node;
